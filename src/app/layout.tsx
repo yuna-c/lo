@@ -4,20 +4,15 @@ import '@/styles/globals.css'
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
 
-const geistSans = localFont({
-  src: '../../public/fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900'
-})
-
-const geistMono = localFont({
-  src: '../../public/fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900'
+const pretendard = localFont({
+  src: '../../public/fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '100 900',
+  variable: '--font-pretendard'
 })
 
 export const metadata: Metadata = {
-  title: 'Riot',
+  title: 'League Of Legends',
   description: 'Riot API를 활용한 리그 오브 레전드 정보 앱 만들기'
 }
 
@@ -28,7 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <link rel="icon" href="/icons/lol.png" sizes="any" />
+      <body className={`${pretendard.variable} antialiased`}>
         <div className="wrap">
           <Header />
           <main>{children}</main>

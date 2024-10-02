@@ -9,6 +9,9 @@ const config: Config = {
       boxSizing: {
         'border-box': 'border-box'
       },
+      fontFamily: {
+        pretendard: ['var(--font-pretendard)', 'Arial', 'sans-serif']
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

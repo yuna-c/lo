@@ -7,7 +7,7 @@ export default function Header() {
     <header className="flex items-center justify-between p-3 border border-b-black border-t-0">
       <h1>
         <Link href="/">
-          <Image aria-hidden src="https://nextjs.org/icons/globe.svg" alt="Globe icon" width={16} height={16} />
+          <Image aria-hidden src="/icons/lol.png" alt="Globe icon" width={24} height={24} />
         </Link>
       </h1>
       <Nav />
