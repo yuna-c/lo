@@ -1,16 +1,17 @@
 'use client'
+import Loading from '@/app/loading'
 import { Rotation } from '@/lib/types/Rotation'
 import { useEffect, useState } from 'react'
 
 export default function RotationPage() {
   const [rotationData, setRotationData] = useState<Rotation | null>(null)
   const [error, setError] = useState<string | null>(null)
-  // const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchRotationData = async () => {
       try {
-        // setLoading(true)
+        setLoading(true)
         const res = await fetch('/api/rotation')
         if (!res.ok) throw new Error('데이터를 가져오는데 실패했습니다.')
         const data: Rotation = await res.json()
@@ -18,14 +19,14 @@ export default function RotationPage() {
       } catch (err) {
         setError(String(err))
       } finally {
-        // setLoading(false)
+        setLoading(false)
       }
     }
 
     fetchRotationData()
   }, [])
 
-  // if (loading) return <p>로딩 중...</p>
+  if (loading) return <Loading />
   if (error) return <p className="text-red-500">{error}</p>
 
   return (

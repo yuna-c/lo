@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { Champion } from '@/lib/types/Champion'
 import Image from 'next/image'
+import { fetchVersion } from '@/lib/utils/serverApi'
 
 export const metadata: Metadata = {
   title: '리그 오브 레전드 챔피언 목록',
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 
 // 서버 컴포넌트
 export default async function ChampionsPage() {
+  const versions = await fetchVersion()
   const version = '14.19.1' // 최신 버전을 사용하도록 하드코딩 또는 API 호출로 동적으로 설정
   const res = await fetch(
     `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion.json`,
@@ -26,6 +28,8 @@ export default async function ChampionsPage() {
 
   return (
     <article className="flex flex-col gap-10 p-4">
+      <p>버전: {versions}</p>
+      <script>{`console.log('Fetched Version:', ${JSON.stringify(versions)})`}</script>
       <div>
         <h2 className="font-bold">챔피언 목록 보기</h2>
       </div>

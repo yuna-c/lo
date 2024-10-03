@@ -1,14 +1,13 @@
-import { Rotation } from '@/lib/types/Rotation'
 import { NextResponse } from 'next/server'
+import { Rotation } from '@/lib/types/Rotation'
+import { RIOT_ROTATE_API_URL } from '@/lib/constants/constants'
 
 export async function GET() {
-  //NOTE - Type Assertion 타입 단언
+  const apiUrl = RIOT_ROTATE_API_URL
   const apiKey = process.env.NEXT_PUBLIC_RIOT_API_KEY
-  const apiUrl = process.env.NEXT_PUBLIC_RIOT_ROTATE_API_URL
-  // console.log('API URL:', apiUrl, 'API Key:', apiKey)
 
   if (!apiKey || !apiUrl) {
-    return NextResponse.json({ error: 'API KEY 또는 URL이 설정되지 않았어요.' }, { status: 500 })
+    return NextResponse.json({ error: 'API KEY 또는 URL이 설정되지 않았어요!' }, { status: 500 })
   }
 
   try {
@@ -17,8 +16,7 @@ export async function GET() {
       headers: {
         'X-Riot-Token': apiKey
       },
-      //NOTE - 최신 API
-      cache: 'no-store'
+      cache: 'no-store' //NOTE - 최신 API
     })
 
     if (!res.ok) {

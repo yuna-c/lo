@@ -1,9 +1,9 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Link } from 'lucide-react'
+import Link from 'next/link'
 
 export function CardItems() {
   return (
-    <Link>
+    <Link href={'/'}>
       <Card>
         <CardHeader>
           <CardTitle>Create project</CardTitle>
