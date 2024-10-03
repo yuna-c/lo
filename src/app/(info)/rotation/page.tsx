@@ -31,9 +31,11 @@ export default function RotationPage() {
 
   return (
     <article className="flex flex-col gap-10 p-4">
-      <div>
+      <div className="txt">
         <h2 className="font-bold">금주 로테이션 확인</h2>
+        <p>Riot Games API를 활용하여 금주 로테이션 정보를 제공합니다.</p>
       </div>
+
       <ul>
         {rotationData?.freeChampionIds.map((id) => (
           <li key={id}>챔피언 ID: {id}</li>

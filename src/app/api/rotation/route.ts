@@ -1,17 +1,16 @@
 import { NextResponse } from 'next/server'
 import { Rotation } from '@/lib/types/Rotation'
-import { RIOT_ROTATE_API_URL } from '@/lib/constants/constants'
+import { rotateApiUrl } from '@/lib/constants/constants'
 
 export async function GET() {
-  const apiUrl = RIOT_ROTATE_API_URL
   const apiKey = process.env.NEXT_PUBLIC_RIOT_API_KEY
 
-  if (!apiKey || !apiUrl) {
+  if (!apiKey || !rotateApiUrl) {
     return NextResponse.json({ error: 'API KEY 또는 URL이 설정되지 않았어요!' }, { status: 500 })
   }
 
   try {
-    const res = await fetch(apiUrl, {
+    const res = await fetch(rotateApiUrl, {
       method: 'GET',
       headers: {
         'X-Riot-Token': apiKey

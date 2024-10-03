@@ -5,6 +5,7 @@ export type Champion = {
   name: string // 챔피언 이름
   title: string // 챔피언 직함
   blurb: string // 챔피언 설명 (간단한 이야기)
+  image: Image
   info: {
     attack: number // 공격력
     defense: number // 방어력
