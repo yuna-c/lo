@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
-import '@/styles/globals.css'
+import { Suspense } from 'react'
 import localFont from 'next/font/local'
-import Header from '@/components/header/Header'
-import Footer from '@/components/footer/Footer'
 import Providers from '@/lib/providers/RQProvider'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import Loading from './loading'
+import '@/styles/globals.css'
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -27,11 +29,13 @@ export default function RootLayout({
       <link rel="icon" href="/icons/lol.png" sizes="any" />
       <body className={`${pretendard.variable} antialiased`}>
         <div className="wrap">
-          <Header />
           <Providers>
-            <main>{children} </main>
+            <Header />
+            <Suspense fallback={<Loading />}>
+              <main>{children}</main>
+            </Suspense>
+            <Footer />
           </Providers>
-          <Footer />
         </div>
       </body>
     </html>

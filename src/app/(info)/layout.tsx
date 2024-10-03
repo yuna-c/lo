@@ -3,5 +3,5 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <section className="grid justify-items-center min-h-screen p-8 pb-20 gap-10 sm:p-20">{children}</section>
+  return <section className="grid justify-items-center min-h-screen py-8 pb-20 m-auto max-w-custom">{children}</section>
 }

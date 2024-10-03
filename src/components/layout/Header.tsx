@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Nav from '../nav/Nav'
+import Nav from './Nav'
 
 export default function Header() {
   return (

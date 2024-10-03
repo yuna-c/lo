@@ -3,15 +3,13 @@ import { NextResponse } from 'next/server'
 
 export async function GET() {
   //NOTE - Type Assertion 타입 단언
-  const apiKey = process.env.NEXT_PUBLIC_RIOT_API_KEY as string
-  const apiUrl = process.env.NEXT_PUBLIC_RIOT_ROTATE_API_URL as string
+  const apiKey = process.env.NEXT_PUBLIC_RIOT_API_KEY
+  const apiUrl = process.env.NEXT_PUBLIC_RIOT_ROTATE_API_URL
+  // console.log('API URL:', apiUrl, 'API Key:', apiKey)
 
   if (!apiKey || !apiUrl) {
     return NextResponse.json({ error: 'API KEY 또는 URL이 설정되지 않았어요.' }, { status: 500 })
   }
-
-  // console.log('API Key:', apiKey)
-  // console.log('API URL:', apiUrl)
 
   try {
     const res = await fetch(apiUrl, {
@@ -29,7 +27,6 @@ export async function GET() {
 
     const data: Rotation[] = await res.json()
     console.log('챔피언 로테이션 정보 :', data)
-
     return NextResponse.json(data)
   } catch (error) {
     console.error('데이터 패치 중 에러가 발생 했어요!', error)

@@ -1,34 +1,41 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { CarouselItems } from '../components/shared/CarouselItems'
+import { CardItems } from '../components/shared/CardItems'
 
 export default function Home() {
   return (
-    <section className="grid justify-items-center min-h-screen p-8 pb-20 gap-10 sm:p-20">
-      <article>
-        <div className="pb-10">
+    <section className="grid justify-items-center min-h-screen py-8 pb-20 m-auto max-w-custom">
+      <article className="flex flex-col gap-10 p-4">
+        <div>
           <h2 className="font-bold">리그 오브 레전드 정보 앱</h2>
           <p>Riot Games API를 활용하여 챔피언과 아이템 정보를 제공합니다.</p>
         </div>
-        <ul className="flex gap-3 flex-col items-center justify-center">
+        <ul className="flex flex-col gap-3 items-center justify-center lg:flex-row ">
           <li>
             <Link href={'/champions'} className="flex flex-col gap-2 items-center justify-center">
-              <Image className="dark:invert" src="/images/lol1.jpg" alt="image" width={400} height={300} priority />
+              <Image className="dark:invert" src="/images/lol1.jpg" alt="image" width={450} height={350} priority />
               <p>챔피언 목록 보기</p>
             </Link>
           </li>
           <li>
             <Link href={'/items'} className="flex flex-col gap-2 items-center justify-center">
-              <Image className="dark:invert" src="/images/lol2.jpg" alt="image" width={400} height={300} priority />
+              <Image className="dark:invert" src="/images/lol2.jpg" alt="image" width={450} height={350} priority />
               <p>아이템 목록 보기</p>
             </Link>
           </li>
           <li>
             <Link href={'/rotation'} className="flex flex-col gap-2 items-center justify-center">
-              <Image className="dark:invert" src="/images/lol3.jpg" alt="image" width={400} height={300} priority />
+              <Image className="dark:invert" src="/images/lol3.jpg" alt="image" width={450} height={350} priority />
               <p>금주 로테이션 확인</p>
             </Link>
           </li>
         </ul>
+      </article>
+
+      <article className="flex justify-center gap-24 p-4">
+        <CarouselItems />
+        <CardItems />
       </article>
 
       {/* 

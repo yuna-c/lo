@@ -6,11 +6,23 @@ const config: Config = {
   content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
+      maxWidth: {
+        custom: '1400px'
+      },
       boxSizing: {
         'border-box': 'border-box'
       },
       fontFamily: {
         pretendard: ['var(--font-pretendard)', 'Arial', 'sans-serif']
+      },
+      animation: {
+        'loading-bar': 'loading 1.5s infinite'
+      },
+      keyframes: {
+        loading: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' }
+        }
       },
       colors: {
         background: 'hsl(var(--background))',

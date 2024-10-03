@@ -1,6 +1,6 @@
 export default function ItemsPage() {
   return (
-    <article className="flex flex-col gap-10">
+    <article className="flex flex-col gap-10 p-4">
       <div>
         <h2 className="font-bold">아이템 목록 보기</h2>
       </div>
