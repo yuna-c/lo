@@ -1,0 +1,12 @@
+/* detail.css */
+.detail {
+  @apply text-white;
+}
+
+.image-container {
+  @apply flex items-start justify-center max-w-[200px] max-h-[200px] overflow-hidden rounded-lg;
+}
+
+.skill-icon-container {
+  @apply flex flex-col justify-center items-center;
+}

@@ -9,7 +9,7 @@ export function CardItems({ champion }: { champion: Champion }) {
 
   return (
     <Link href={`/champions/${champion.id}`}>
-      <Card className="p-5">
+      <Card className="p-3  md:p-5">
         <CardHeader className="p-0 pb-4">
           <CardTitle>{champion.name}</CardTitle>
           <CardDescription>{champion.title}</CardDescription>
