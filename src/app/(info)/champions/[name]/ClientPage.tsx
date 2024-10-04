@@ -1,19 +1,23 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { apiUrl } from '@/lib/constants/constants'
 import { ChampionDetail, ChampionSkill, ChampionSkin } from '@/lib/types/Champion'
 import Modal from '@/components/shared/Modal'
+import Loading from '@/app/loading'
 import '@/styles/detail.css'
 
 type Props = {
   champion: ChampionDetail
   version: string
 }
+
 export default function ClientPage({ champion, version }: Props) {
+  const [loading, setLoading] = useState<boolean>(true)
   const [selectedSkin, setSelectedSkin] = useState<ChampionSkin | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  // 스킬에 Q, W, E, R 키 할당
   const keyBoard: string[] = ['Q', 'W', 'E', 'R']
   const spellsWithKeys: ChampionSkill[] = champion.spells.map((spell: ChampionSkill, index: number) => ({
     ...spell,
@@ -29,6 +33,14 @@ export default function ClientPage({ champion, version }: Props) {
     setSelectedSkin(null)
     setIsModalOpen(false)
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    })
+  }, [champion])
+
+  if (loading) return <Loading />
 
   return (
     <article className="relative w-full detail">
@@ -104,7 +116,15 @@ export default function ClientPage({ champion, version }: Props) {
           <Modal isOpen={isModalOpen} onClose={closeModal}>
             {selectedSkin && (
               <>
-                <Image src={`${apiUrl}/cdn/img/champion/splash/${champion.id}_${selectedSkin.num}.jpg`} alt={selectedSkin.name} width={800} height={340} priority className="object-cover" />
+                <Image
+                  src={`${apiUrl}/cdn/img/champion/splash/${champion.id}_${selectedSkin.num}.jpg`}
+                  alt={selectedSkin.name}
+                  width={800}
+                  height={450}
+                  quality={50}
+                  priority
+                  className="object-cover"
+                />
                 <p className="mt-4 font-bold text-xl text-black">{selectedSkin.name}</p>
               </>
             )}
