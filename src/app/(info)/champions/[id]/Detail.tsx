@@ -12,7 +12,7 @@ type Props = {
   version: string
 }
 
-export default function ClientPage({ champion, version }: Props) {
+export default function Detail({ champion, version }: Props) {
   const [loading, setLoading] = useState<boolean>(true)
   const [selectedSkin, setSelectedSkin] = useState<ChampionSkin | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)

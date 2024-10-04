@@ -1,5 +1,5 @@
 'use server'
-import { apiUrl } from '../constants/constants'
+import { apiUrl } from '@/lib/constants/constants'
 import { Champion, ChampionDetail, ChampionDetailResponse } from '@/lib/types/Champion'
 
 //SECTION - API의 버전 정보
@@ -48,5 +48,3 @@ export async function fetchChampionDetail(name: string): Promise<ChampionDetail>
   const championDetail = data.data[name]
   return championDetail
 }
-
-//SECTION - 아이템 목록
