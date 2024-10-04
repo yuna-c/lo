@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { CarouselItems } from '../components/shared/CarouselItems'
+// import { CarouselItems } from '../components/shared/CarouselItems'
 
 export default function Home() {
   return (
@@ -35,11 +35,11 @@ export default function Home() {
         </div>
       </article>
 
+      {/* 
       <article className="flex justify-center gap-24 p-4">
         <CarouselItems />
       </article>
 
-      {/* 
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"

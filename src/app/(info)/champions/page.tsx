@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { fetchChampionsList } from '@/lib/utils/serverApi'
-import { CardItems } from '@/components/shared/CardItems'
+import { CardItems } from '@/components/champions/CardItems'
 
 export const metadata: Metadata = {
   title: 'League Of Legends : 챔피언 목록',

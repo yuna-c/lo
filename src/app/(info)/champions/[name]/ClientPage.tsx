@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { apiUrl } from '@/lib/constants/constants'
 import { ChampionDetail, ChampionSkill, ChampionSkin } from '@/lib/types/Champion'
-import { ModalItems } from '@/components/shared/ModalItems'
+import { ModalItems } from '@/components/champions/ModalItems'
 import Loading from '@/app/loading'
 import '@/styles/detail.css'
 
