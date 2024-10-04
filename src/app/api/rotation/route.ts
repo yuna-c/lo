@@ -4,7 +4,7 @@ import { rotateApiUrl } from '@/lib/constants/constants'
 
 //SECTION - 챔피언 로테이션 : CSR
 export async function GET(request: Request) {
-  const apiKey = process.env.NEXT_PUBLIC_RIOT_API_KEY
+  const apiKey = process.env.NEXT_PUBLIC_RIOT_API_KEY as string
 
   if (!apiKey || !rotateApiUrl) {
     return NextResponse.json({ error: 'API 요청 실패: 상태 코드' }, { status: 500 })

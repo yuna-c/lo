@@ -56,8 +56,7 @@ export async function fetchChampionDetail(name: string): Promise<ChampionDetail>
     }
 
     const data: ChampionDetailResponse = await res.json()
-    const championDetail = data.data[name] // 챔피언 상세 정보 가져오기
-    // console.log(championDetail)
+    const championDetail = data.data[name]
     return championDetail
   } catch (error) {
     console.error('챔피언 정보를 가져오지 못했어요!', error)

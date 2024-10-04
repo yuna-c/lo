@@ -71,10 +71,10 @@ export default function ClientPage({ champion, version }: Props) {
           {/* 챔피언 스탯 */}
           <h2 className="font-bold">스탯</h2>
           <div className="flex flex-row gap-4">
-            <p>공격력: {champion.info.attack}</p>
-            <p>방어력: {champion.info.defense}</p>
-            <p>마법력: {champion.info.magic}</p>
-            <p>난이도: {champion.info.difficulty}</p>
+            <p>공격력: {champion.info.attack !== 0 ? champion.info.attack : 6}</p>
+            <p>방어력: {champion.info.defense !== 0 ? champion.info.defense : 2}</p>
+            <p>마법력: {champion.info.magic !== 0 ? champion.info.magic : 4}</p>
+            <p>난이도: {champion.info.difficulty !== 0 ? champion.info.difficulty : 5}</p>
           </div>
 
           {/* 챔피언 스킬 */}
