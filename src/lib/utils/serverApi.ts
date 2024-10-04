@@ -1,4 +1,5 @@
 'use server'
+import { Item } from '@/lib/types/Item'
 import { apiUrl } from '@/lib/constants/constants'
 import { Champion, ChampionDetail, ChampionDetailResponse } from '@/lib/types/Champion'
 
@@ -47,4 +48,19 @@ export async function fetchChampionDetail(name: string): Promise<ChampionDetail>
   const data: ChampionDetailResponse = await res.json()
   const championDetail = data.data[name]
   return championDetail
+}
+
+//SECTION - 아이템 목록
+export async function fetchItems(): Promise<Item[]> {
+  const version = await fetchVersion()
+  const res = await fetch(`${apiUrl}/cdn/${version}/data/ko_KR/item.json`)
+
+  if (!res.ok) {
+    throw new Error(`아이템 정보 요청 실패: 상태 코드 ${res.status}`)
+  }
+
+  const data = await res.json()
+  const items: Item[] = Object.values(data.data)
+  // console.log('아이템 목록:', items)
+  return items
 }

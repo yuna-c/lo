@@ -12,22 +12,23 @@ type Props = {
   footerContent?: React.ReactNode
   buttonLabel?: string
   buttonUrl?: string
+  imageWidth?: number
+  imageHeight?: number
+  className?: string
 }
 
-export function ReusableCard({ title, description, imageUrl, linkUrl, footerContent, buttonLabel, buttonUrl }: Props) {
+export function ReusableCard({ title, description, imageUrl, linkUrl, footerContent, buttonLabel, buttonUrl, imageWidth = 300, imageHeight = 300, className = '' }: Props) {
   const cardContent = (
-    <Card className="p-3 md:p-5">
+    <Card className={`p-3 md:p-5 ${className}`}>
       <CardHeader className="p-0 pb-4">
         <CardTitle>{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
-
       <CardContent className="p-0">
-        <div className="flex justify-center items-start overflow-hidden max-h-[250px]">
-          <Image src={imageUrl} alt={title} width={300} height={300} className="object-cover transform scale-110" quality={100} priority />
+        <div className="flex justify-center items-start overflow-hidden" style={{ maxHeight: `${imageHeight}px` }}>
+          <Image src={imageUrl} alt={title} width={imageWidth} height={imageHeight} className="object-cover transform scale-110" quality={100} priority />
         </div>
       </CardContent>
-
       {(footerContent || buttonLabel) && (
         <CardFooter>
           {footerContent}
