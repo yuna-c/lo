@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { apiUrl } from '@/lib/constants/constants'
 import { ChampionDetail, ChampionSkill, ChampionSkin } from '@/lib/types/Champion'
-import Modal from '@/components/shared/Modal'
+import { ModalItems } from '@/components/shared/ModalItems'
 import Loading from '@/app/loading'
 import '@/styles/detail.css'
 
@@ -37,7 +37,7 @@ export default function ClientPage({ champion, version }: Props) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
-    })
+    }, 1000)
   }, [champion])
 
   if (loading) return <Loading />
@@ -79,7 +79,7 @@ export default function ClientPage({ champion, version }: Props) {
 
           {/* 챔피언 스킬 */}
           <h2 className="font-bold">스킬</h2>
-          <div className="w-full flex justify-start -ml-3">
+          <div className="w-full flex justify-start md:-ml-2">
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
               <div className="skill-icon-container">
                 <Image src={`${apiUrl}/cdn/${version}/img/passive/${champion.passive.image.full}`} width={50} height={50} alt={champion.passive.name || ''} className="rounded-sm" />
@@ -106,29 +106,13 @@ export default function ClientPage({ champion, version }: Props) {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {champion.skins.map((skin: ChampionSkin) => (
               <div key={skin.id} onClick={() => openModal(skin)} className="cursor-pointer">
-                <Image src={`${apiUrl}/cdn/img/champion/splash/${champion.id}_${skin.num}.jpg`} alt={skin.name} width={300} height={170} priority className="object-cover rounded-lg" />
+                <Image src={`${apiUrl}/cdn/img/champion/splash/${champion.id}_${skin.num}.jpg`} alt={skin.name} width={260} height={154} priority className="object-cover rounded-lg" />
                 <p className="mt-2">{skin.name}</p>
               </div>
             ))}
           </div>
 
-          {/* 모달 */}
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-            {selectedSkin && (
-              <>
-                <Image
-                  src={`${apiUrl}/cdn/img/champion/splash/${champion.id}_${selectedSkin.num}.jpg`}
-                  alt={selectedSkin.name}
-                  width={800}
-                  height={450}
-                  quality={50}
-                  priority
-                  className="object-cover"
-                />
-                <p className="mt-4 font-bold text-xl text-black">{selectedSkin.name}</p>
-              </>
-            )}
-          </Modal>
+          <ModalItems selectedSkin={selectedSkin} isOpen={isModalOpen} onClose={closeModal} champion={champion} />
         </div>
       </div>
     </article>

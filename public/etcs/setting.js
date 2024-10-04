@@ -16,6 +16,7 @@
 // npx shadcn@latest add input
 // npx shadcn@latest add label
 // npx shadcn@latest add select
+// npx shadcn@latest add dialog
 
 // https://www.chartjs.org/docs/latest/
 // yarn add chart.js react-chartjs-2
