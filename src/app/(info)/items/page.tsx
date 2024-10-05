@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { CardItems } from '@/components/champions/CardItems'
 import { fetchItems, fetchVersion } from '@/lib/utils/serverApi'
+import { Item } from '@/lib/types/Item'
 
 export const metadata: Metadata = {
   title: 'League Of Legends : 아이템 목록',
@@ -13,8 +14,8 @@ export const metadata: Metadata = {
 }
 
 export default async function ItemsPage() {
-  const version = await fetchVersion()
-  const items = await fetchItems()
+  const version: string = await fetchVersion()
+  const items: Item[] = await fetchItems()
 
   return (
     <article className="flex flex-col gap-10 p-4">
@@ -24,7 +25,7 @@ export default async function ItemsPage() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {items.map((item) => (
+        {items.map((item: Item) => (
           <CardItems key={`item-${item.id}`} item={item} version={version} className="flex flex-col-reverse items-center gap-2 text-sm" />
         ))}
       </div>
