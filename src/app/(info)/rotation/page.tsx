@@ -1,11 +1,14 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { Champion } from '@/lib/types/Champion'
-// import { LoadingImgUrl } from '@/lib/constants/constants'
 import { CardItems } from '@/components/champions/CardItems'
 import Loading from '@/app/loading'
 
 export default function RotationPage() {
+  // useEffect(() => {
+  //   throw new Error('의도된 로테이션 페이지 에러')
+  // }, [])
+
   const [rotationChampions, setRotationChampions] = useState<Champion[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)

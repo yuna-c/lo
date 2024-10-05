@@ -2,11 +2,10 @@
 // import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Error from './error'
 
 export default function Home() {
   // useEffect(() => {
-  //   throw new Error('페이지가 이상해요!')
+  //   throw new Error('의도된 글로벌 페이지 에러')
   // }, [])
 
   return (

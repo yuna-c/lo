@@ -28,15 +28,15 @@ export default function RootLayout({
     <html lang="ko">
       <link rel="icon" href="/icons/lol.png" sizes="any" />
       <body className={`${pretendard.variable} antialiased`}>
-        <div className="wrap">
-          <Providers>
-            <Header />
-            <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loading />}>
+          <div className="wrap">
+            <Providers>
+              <Header />
               <main>{children}</main>
-            </Suspense>
-            <Footer />
-          </Providers>
-        </div>
+              <Footer />
+            </Providers>
+          </div>
+        </Suspense>
       </body>
     </html>
   )
