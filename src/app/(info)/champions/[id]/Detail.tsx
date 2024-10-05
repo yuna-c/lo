@@ -15,7 +15,7 @@ type Props = {
 export default function Detail({ champion, version }: Props) {
   const [loading, setLoading] = useState<boolean>(true)
   const [selectedSkin, setSelectedSkin] = useState<ChampionSkin | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   const keyBoard: string[] = ['Q', 'W', 'E', 'R']
   const spellsWithKeys: ChampionSkill[] = champion.spells.map((spell: ChampionSkill, index: number) => ({
@@ -43,7 +43,7 @@ export default function Detail({ champion, version }: Props) {
 
   return (
     <article className="relative w-full detail">
-      {/* 배경 */}
+
       <div
         className="absolute inset-0 -z-10 bg-cover bg-no-repeat bg-fixed opacity-80 filter grayscale-[60%]"
         style={{
@@ -52,7 +52,6 @@ export default function Detail({ champion, version }: Props) {
         }}
       ></div>
 
-      {/* 콘텐츠 */}
       <div className="relative m-auto min-h-screen max-w-custom py-8 pb-20 container detail">
         <div className="flex flex-col gap-10 p-4">
           {/* 챔피언 정보 */}

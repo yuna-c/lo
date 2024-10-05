@@ -1,14 +1,21 @@
 import { Metadata } from 'next'
+import { Champion } from '@/lib/types/Champion'
 import { fetchChampionsList } from '@/lib/utils/serverApi'
 import { CardItems } from '@/components/champions/CardItems'
 
 export const metadata: Metadata = {
   title: 'League Of Legends : 챔피언 목록',
-  description: 'Riot API를 이용해 리그 오브 레전드의 모든 챔피언 목록을 확인하세요.'
+  description: 'Riot API를 이용해 리그 오브 레전드의 모든 챔피언 목록을 확인하세요.',
+  //NOTE - 미리보기
+  openGraph: {
+    title: 'League Of Legends : 챔피언 목록',
+    description: 'Riot API를 이용해 리그 오브 레전드의 모든 챔피언 목록을 확인하세요.',
+    url: 'http://localhost:3000/champions'
+  }
 }
 
 export default async function ChampionsPage() {
-  const championList = await fetchChampionsList()
+  const championList: Champion[] = await fetchChampionsList()
 
   return (
     <article className="flex flex-col gap-10 p-4">
@@ -18,7 +25,7 @@ export default async function ChampionsPage() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {championList.map((champion) => (
+        {championList.map((champion: Champion) => (
           <CardItems key={champion.id} champion={champion} />
         ))}
       </div>

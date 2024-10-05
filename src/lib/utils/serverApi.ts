@@ -1,4 +1,3 @@
-// src/lib/utils/serverApi.ts
 'use server'
 import { Item } from '@/lib/types/Item'
 import { apiUrl, dataUrl } from '@/lib/constants/constants'
