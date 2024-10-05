@@ -2,6 +2,7 @@
 // https://ddragon.leagueoflegends.com/cdn/14.19.1/data/ko_KR/champion.json
 // https://ddragon.leagueoflegends.com/cdn/14.19.1/data/ko_KR/item.json
 // https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_2.jpg
+// https://developer.riotgames.com/
 
 // yarn add @tanstack/react-query @tanstack/react-query-devtools
 // yarn add zustand

@@ -14,7 +14,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `League Of Legends : ${champion.name}`,
     description: `${champion.lore}`,
-    //NOTE - 미리보기
     openGraph: {
       title: `League Of Legends : ${champion.name}`,
       description: `${champion.lore}`,
@@ -24,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function DetailPage({ params }: Props) {
- const version: string = await fetchVersion()
+  const version: string = await fetchVersion()
   const champion: ChampionDetail = await fetchChampionDetail(params.id)
 
   return <Detail champion={champion} version={version} />
