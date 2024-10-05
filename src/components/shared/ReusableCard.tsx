@@ -10,13 +10,7 @@ type ImageProps = {
   alt: string
 }
 
-type CardProps = {
-  title: string
-  image: ImageProps
-  options?: OptionsProps
-}
-
-type OptionsProps = {
+type CardOptions = {
   description?: string
   linkUrl?: string
   buttonLabel?: string
@@ -26,11 +20,17 @@ type OptionsProps = {
   children?: React.ReactNode
 }
 
-export function ReusableCard({ title, image, options = {}, ...props }: CardProps) {
+type Props = {
+  title: string
+  image: ImageProps
+  options?: CardOptions
+}
+
+export function ReusableCard({ title, image, options = {} }: Props) {
   const { description, linkUrl, buttonLabel, buttonUrl, className = '', titleClass = '', children } = options
 
   const cardContent = (
-    <Card className={`p-3 md:p-5 ${className}`} {...props}>
+    <Card className={`p-3 md:p-5 ${className}`}>
       <CardHeader className="p-0 pb-4">
         <CardTitle className={titleClass}>{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
