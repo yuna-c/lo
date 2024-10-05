@@ -18,7 +18,7 @@ export default async function ChampionsPage() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {championList?.map((champion) => (
+        {championList.map((champion) => (
           <CardItems key={champion.id} champion={champion} />
         ))}
       </div>

@@ -12,14 +12,41 @@ type CardItemsProps = {
 
 export function CardItems({ champion, item, version, className = '' }: CardItemsProps) {
   if (!champion && !item && !version) return null
-  const versionToUse = version || '14.19.1'
-
   if (champion) {
-    return <ReusableCard title={champion.name} description={champion.title} imageUrl={`${LoadingImgUrl}/${champion.id}_0.jpg`} linkUrl={`/champions/${champion.id}`} />
+    return (
+      <ReusableCard
+        title={champion.name}
+        image={{
+          url: `${LoadingImgUrl}/${champion.id}_0.jpg`,
+          alt: champion.name,
+          width: 300,
+          height: 300
+        }}
+        options={{
+          description: champion.title,
+          linkUrl: `/champions/${champion.id}`,
+          className
+        }}
+      />
+    )
   }
+  if (item && version) {
+    const itemImageUrl = item.image?.full ? itemImgUrl(version, item.image.full) : '/images/lol1.jpg'
 
-  if (item) {
-    const itemImageUrl = item.image?.full ? itemImgUrl(versionToUse, item.image.full) : '../../../public/images/lol1.jpg'
-    return <ReusableCard title={item.name} imageUrl={itemImageUrl} imageWidth={60} imageHeight={60} className={className} />
+    return (
+      <ReusableCard
+        title={item.name}
+        image={{
+          url: itemImageUrl,
+          alt: item.name,
+          width: 60,
+          height: 60
+        }}
+        options={{
+          titleClass: 'text-sm text-muted-foreground font-normal',
+          className
+        }}
+      />
+    )
   }
 }
