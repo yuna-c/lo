@@ -1,21 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { Champion } from '@/lib/types/Champion'
-import { LoadingImgUrl } from '@/lib/constants/constants'
-import Image from 'next/image'
-import Link from 'next/link'
+// import { LoadingImgUrl } from '@/lib/constants/constants'
+import { CardItems } from '@/components/champions/CardItems'
 import Loading from '@/app/loading'
-
-// client 컴포넌트는 서버에서 실행되는 정적 메타데이터(metadata)를 지원하지 않기 때문에 오류가 발생
-// export const metadata = {
-//   title: 'League Of Legends : 금주의 무료 챔피언',
-//   description: 'Riot API를 이용해 리그 오브 레전드의 금주의 무료 챔피언 목록을 확인하세요.',
-//   openGraph: {
-//     title: 'League Of Legends : 금주의 무료 챔피언',
-//     description: 'Riot API를 이용해 리그 오브 레전드의 금주의 무료 챔피언 목록을 확인하세요.',
-//     url: 'http://localhost:3000/rotation'
-//   }
-// }
 
 export default function RotationPage() {
   const [rotationChampions, setRotationChampions] = useState<Champion[]>([])
@@ -58,13 +46,8 @@ export default function RotationPage() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {rotationChampions.map((champion) => (
-          <Link key={champion.id} href={`/champions/${champion.id}`}>
-            <div className="w-1/2 h-1/2">
-              <Image src={`${LoadingImgUrl}/${champion.id}_0.jpg`} alt={champion.name} width={200} height={200} className="object-cover transform scale-110" quality={100} priority />
-              <p className="text-center mt-2">{champion.name}</p>
-            </div>
-          </Link>
+        {rotationChampions.map((champion: Champion) => (
+          <CardItems key={champion.id} champion={champion} />
         ))}
       </div>
     </article>
