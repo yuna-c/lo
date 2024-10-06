@@ -49,7 +49,7 @@ export default function Detail({ champion, version }: Props) {
           </h2>
           <div className="flex flex-col gap-10">
             <div className="image-container">
-              <Image src={`${LoadingImgUrl}/${champion.id}_0.jpg`} alt={champion.name} width={300} height={300} className="object-cover transform scale-110" quality={100} priority />
+              <Image src={`${LoadingImgUrl}/${champion.id}_0.jpg`} alt={champion.name} width={300} height={300} className="object-cover transform scale-110" priority />
             </div>
             <p>{champion.lore}</p>
           </div>
