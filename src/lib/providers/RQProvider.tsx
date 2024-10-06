@@ -1,7 +1,8 @@
 'use client'
-
+import { useEffect } from 'react'
 import { isServer, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { useDarkModeStore } from '@/lib/stores/useDarkStore'
 
 function makeQueryClient() {
   return new QueryClient({
@@ -23,8 +24,18 @@ function getQueryClient() {
     return browserQueryClient
   }
 }
+
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient()
+  const { isDarkMode } = useDarkModeStore()
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark')
+    } else {
+      document.body.classList.remove('dark')
+    }
+  }, [isDarkMode])
 
   return (
     <QueryClientProvider client={queryClient}>

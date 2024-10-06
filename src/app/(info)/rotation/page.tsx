@@ -1,35 +1,35 @@
 'use client'
 import Head from 'next/head'
+import Error from '../error'
 import Loading from '@/app/loading'
-import { useEffect } from 'react'
 import { Champion } from '@/lib/types/Champion'
-import { CardItems } from '@/components/champions/CardItems'
-import { useStateStore } from '@/lib/stores/zustand'
+import { useQuery } from '@tanstack/react-query'
 import { getChampionRotation } from '@/lib/utils/rotateApi'
+import { CardItems } from '@/components/champions/CardItems'
+
+type Props = {
+  allPlayers: Champion[]
+  newPlayers: Champion[]
+}
 
 export default function RotationPage() {
-  const { loading, setLoading, allChampions, setAllChampions, newChampions, setNewChampions } = useStateStore()
+  const { data, isLoading, error, refetch } = useQuery<Props>({
+    queryKey: ['championRotation'],
+    queryFn: getChampionRotation,
+    retry: false
+  })
 
-  useEffect(() => {
-    const fetchRotationData = async () => {
-      try {
-        setLoading(true)
-        const { allPlayers, newPlayers } = await getChampionRotation()
-        setAllChampions(allPlayers)
-        setNewChampions(newPlayers)
-      } catch (error) {
-        console.error('챔피언 로테이션을 불러오는 데 실패했어요!', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchRotationData()
-  }, [setLoading, setAllChampions, setNewChampions])
-
-  if (loading) {
+  if (isLoading) {
     return <Loading />
   }
+
+  if (error instanceof Error) {
+    return <Error error={error} reset={refetch} />
+  }
+
+  // 데이터가 성공적으로 로드되었을 경우 구조 분해
+  // 타입 단언을 사용하여 data가 Props임을 보장
+  const { allPlayers, newPlayers } = data as Props
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function RotationPage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {allChampions.map((champion: Champion) => (
+            {allPlayers.map((champion: Champion) => (
               <CardItems key={champion.id} champion={champion} />
             ))}
           </div>
@@ -62,7 +62,7 @@ export default function RotationPage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {newChampions.map((champion: Champion) => (
+            {newPlayers.map((champion: Champion) => (
               <CardItems key={champion.id} champion={champion} />
             ))}
           </div>

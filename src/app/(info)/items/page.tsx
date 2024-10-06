@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
+import { Item } from '@/lib/types/Item'
 import { CardItems } from '@/components/champions/CardItems'
 import { fetchItems, fetchVersion } from '@/lib/utils/serverApi'
-import { Item } from '@/lib/types/Item'
 
 export const metadata: Metadata = {
   title: 'League Of Legends : 아이템 목록',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function ItemsPage() {
   const version: string = await fetchVersion()
   const items: Item[] = await fetchItems()
-  // console.log(items)
+
   return (
     <article className="flex flex-col gap-10 p-4">
       <div className="txt">

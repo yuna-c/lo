@@ -1,13 +1,7 @@
-// 'use client'
-// import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Home() {
-  // useEffect(() => {
-  //   throw new Error('의도된 글로벌 페이지 에러')
-  // }, [])
-
   return (
     <section className="grid justify-items-center min-h-screen py-8 pb-20 m-auto max-w-custom container">
       <article className="flex flex-col gap-10 p-4">
@@ -20,29 +14,25 @@ export default function Home() {
           <ul className="flex flex-col gap-3 items-center justify-center lg:flex-row ">
             <li>
               <Link href={'/champions'} className="flex flex-col gap-2 items-center justify-center">
-                <Image className="dark:invert" src="/images/lol1.jpg" alt="image" width={450} height={350} priority />
+                <Image src="/images/lol1.jpg" alt="image" width={450} height={350} priority />
                 <p>챔피언 목록 보기</p>
               </Link>
             </li>
             <li>
               <Link href={'/items'} className="flex flex-col gap-2 items-center justify-center">
-                <Image className="dark:invert" src="/images/lol2.jpg" alt="image" width={450} height={350} priority />
+                <Image src="/images/lol2.jpg" alt="image" width={450} height={350} priority />
                 <p>아이템 목록 보기</p>
               </Link>
             </li>
             <li>
               <Link href={'/rotation'} className="flex flex-col gap-2 items-center justify-center">
-                <Image className="dark:invert" src="/images/lol3.jpg" alt="image" width={450} height={350} priority />
+                <Image src="/images/lol3.jpg" alt="image" width={450} height={350} priority />
                 <p>금주 로테이션 확인</p>
               </Link>
             </li>
           </ul>
         </div>
       </article>
-
-      {/* <article className="flex justify-center gap-24 p-4">
-        <CarouselItems />
-      </article> */}
     </section>
   )
 }

@@ -1,10 +1,9 @@
 'use client'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useStateStore } from '@/lib/stores/useStateStore'
 import { LoadingImgUrl, splashImgUrl, passiveImgUrl, spellImgUrl } from '@/lib/constants/constants'
 import { ChampionDetail, ChampionSkill, ChampionSkin } from '@/lib/types/Champion'
 import { ModalItems } from '@/components/champions/ModalItems'
-import Loading from '@/app/loading'
 import '@/styles/detail.css'
 
 type Props = {
@@ -13,9 +12,7 @@ type Props = {
 }
 
 export default function Detail({ champion, version }: Props) {
-  const [loading, setLoading] = useState<boolean>(true)
-  const [selectedSkin, setSelectedSkin] = useState<ChampionSkin | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const { selectedSkin, setSelectedSkin, isModalOpen, setIsModalOpen } = useStateStore()
 
   const keyBoard: string[] = ['Q', 'W', 'E', 'R']
   const spellsWithKeys: ChampionSkill[] = champion.spells.map((spell: ChampionSkill, index: number) => ({
@@ -32,14 +29,6 @@ export default function Detail({ champion, version }: Props) {
     setSelectedSkin(null)
     setIsModalOpen(false)
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [champion])
-
-  if (loading) return <Loading />
 
   return (
     <article className="relative w-full detail">

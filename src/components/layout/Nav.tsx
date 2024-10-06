@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import DarkMode from './DarkMode'
 
 export default function Nav() {
   return (
@@ -12,6 +13,9 @@ export default function Nav() {
         </li>
         <li>
           <Link href={'/rotation'}>로테이션</Link>
+        </li>
+        <li>
+          <DarkMode />
         </li>
       </ul>
     </nav>
