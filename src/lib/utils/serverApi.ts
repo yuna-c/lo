@@ -36,16 +36,16 @@ export async function fetchChampionsList(): Promise<Champion[]> {
 }
 
 //SECTION - 특정 챔피언 상세 정보
-export async function fetchChampionDetail(name: string): Promise<ChampionDetail> {
+export async function fetchChampionDetail(id: string): Promise<ChampionDetail> {
   const version = await fetchVersion()
-  const res = await fetch(`${dataUrl(version)}/champion/${name}.json`)
+  const res = await fetch(`${dataUrl(version)}/champion/${id}.json`)
 
   if (!res.ok) {
     throw new Error(`챔피언 정보 요청 실패: 상태 코드 ${res.status}`)
   }
 
   const data: ChampionDetailResponse = await res.json()
-  return data.data[name]
+  return data.data[id]
 }
 
 //SECTION - 아이템 목록

@@ -3,10 +3,10 @@ import { Button } from '@/components/ui/button'
 
 type Props = {
   isOpen: boolean
-  onClose: () => void
   title: string
   description?: string
   children: React.ReactNode
+  onClose: () => void
 }
 
 export function ReusableModal({ isOpen, onClose, title, description, children }: Props) {

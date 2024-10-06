@@ -3,7 +3,12 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { startTransition, useEffect } from 'react'
 
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+type Props = {
+  error: Error & { digest?: string }
+  reset: () => void
+}
+
+export default function Error({ error, reset }: Props) {
   useEffect(() => {
     console.error(error)
   }, [error])

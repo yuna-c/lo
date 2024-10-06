@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function ItemsPage() {
   const version: string = await fetchVersion()
   const items: Item[] = await fetchItems()
-
+  console.log(items)
   return (
     <article className="flex flex-col gap-10 p-4">
       <div className="txt">
@@ -32,3 +32,5 @@ export default async function ItemsPage() {
     </article>
   )
 }
+
+//
