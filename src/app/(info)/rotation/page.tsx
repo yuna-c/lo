@@ -16,7 +16,8 @@ export default function RotationPage() {
   const { data, isLoading, error, refetch } = useQuery<Props>({
     queryKey: ['championRotation'],
     queryFn: getChampionRotation,
-    retry: false
+    retry: false,
+    refetchOnWindowFocus: false // 포커스 시마다 리패치하지 않도록 설정
   })
 
   if (isLoading) {

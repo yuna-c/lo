@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Loading from './loading'
 import '@/styles/globals.css'
+import ScrollTop from '@/components/layout/ScrollTop'
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -27,8 +28,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <link rel="icon" href="/icons/lol.png" sizes="any" />
-      <body className={`${pretendard.variable} antialiased bg-background text-foreground`}>
-        <Providers>
+      <Providers>
+        <body className={`${pretendard.variable} antialiased bg-background text-foreground`}>
           <Suspense fallback={<Loading />}>
             <div className="wrap">
               <Header />
@@ -36,8 +37,9 @@ export default function RootLayout({
               <Footer />
             </div>
           </Suspense>
-        </Providers>
-      </body>
+          <ScrollTop />
+        </body>
+      </Providers>
     </html>
   )
 }
