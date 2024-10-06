@@ -17,7 +17,8 @@ export default function RotationPage() {
     queryKey: ['championRotation'],
     queryFn: getChampionRotation,
     retry: false,
-    refetchOnWindowFocus: false // 포커스 시마다 리패치하지 않도록 설정
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5
   })
 
   if (isLoading) {
@@ -29,7 +30,6 @@ export default function RotationPage() {
   }
 
   // 데이터가 성공적으로 로드되었을 경우 구조 분해
-  // 타입 단언을 사용하여 data가 Props임을 보장
   const { allPlayers, newPlayers } = data as Props
 
   return (

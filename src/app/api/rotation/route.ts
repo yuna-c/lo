@@ -16,7 +16,10 @@ export async function GET() {
       headers: {
         'X-Riot-Token': apiKey
       },
-      cache: 'no-store'
+      // cache: 'no-store'
+      next: {
+        revalidate: 86400
+      }
     })
 
     if (!res.ok) {

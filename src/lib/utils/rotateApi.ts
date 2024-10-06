@@ -10,7 +10,9 @@ export async function getChampionRotation(): Promise<{
   try {
     const res = await fetch('/api/rotation', {
       method: 'GET',
-      cache: 'no-store'
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
 
     if (!res.ok) {
