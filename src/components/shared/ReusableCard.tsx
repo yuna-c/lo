@@ -38,7 +38,7 @@ export function ReusableCard({ title, image, options = {} }: Props) {
 
       <CardContent className="p-0">
         <div className="flex justify-center items-start overflow-hidden" style={{ maxHeight: `${image.height}px` }}>
-          <Image src={image.url} alt={image.alt} width={image.width} height={image.height} className="object-cover transform scale-110" quality={100} priority />
+          <Image src={image.url} alt={image.alt} width={image.width} height={image.height} className="object-cover transform scale-110" priority />
         </div>
       </CardContent>
 
