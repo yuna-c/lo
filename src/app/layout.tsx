@@ -30,13 +30,13 @@ export default function RootLayout({
       <link rel="icon" href="/icons/lol.png" sizes="any" />
       <Providers>
         <body className={`${pretendard.variable} antialiased bg-background text-foreground`}>
-          <Suspense fallback={<Loading />}>
-            <div className="wrap">
-              <Header />
+          <div className="wrap">
+            <Header />
+            <Suspense fallback={<Loading />}>
               <main>{children}</main>
-              <Footer />
-            </div>
-          </Suspense>
+            </Suspense>
+            <Footer />
+          </div>
           <ScrollTop />
         </body>
       </Providers>
