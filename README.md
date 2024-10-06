@@ -14,9 +14,9 @@
 
 ## 시작하기
 
-npx create-next-app@latest
-yarn
-yarn dev
+- npx create-next-app@latest
+- yarn
+- yarn dev
 
 - **TypeScript**: 타입 안전성을 위해 사용
 - **ESLint**: 코드 품질과 일관성을 유지하기 위해 사용
@@ -45,17 +45,18 @@ What import alias would you like configured? @/*
 
 ## 기술 스택
 
-프레임워크: Next.js (App Router 사용)
-언어: TypeScript
-스타일링: Tailwind CSS
-상태 관리: Zustand
-API: Riot Games API
-아이콘: Lucide React
-폰트: Pretendard
+- 프레임워크: Next.js (App Router 사용)
+- 언어: TypeScript
+- 스타일링: Tailwind CSS
+- 상태 관리: Zustand
+- API: Riot Games API
+- 아이콘: Lucide React
+- 폰트: Pretendard
+- ui : shadcn ui
 
 ## 프로젝트 구조
 
-```
+```bash
 lol-dex
 ├─ public
 │  ├─ etcs
@@ -136,10 +137,10 @@ lol-dex
 ## 학습 자료
 
 - 프로젝트: Next.js와 TypeScript에 대한 학습을 목적
-
-Next.js Documentation - Next.js의 기능과 API에 대해 학습
-Learn Next.js - Next.js에 대한 상호작용 학습 자료
-Riot Games API Documentation - Riot API에 대한 정보
+  <br>
+- Next.js Documentation - Next.js의 기능과 API에 대해 학습
+- Learn Next.js - Next.js에 대한 상호작용 학습 자료
+- Riot Games API Documentation - Riot API에 대한 정보
 
 ## 트러블 슈팅
 
@@ -148,7 +149,7 @@ Riot Games API Documentation - Riot API에 대한 정보
 문제: NEXT*PUBLIC* 접두사가 누락되어 클라이언트에서 환경 변수를 불러올 수 없었습니다.
 해결: NEXT*PUBLIC*을 추가하여 클라이언트 측에서 API 키에 접근할 수 있도록 수정했습니다.
 
-```
+```bash
 const apiUrl = process.env.NEXT_PUBLIC_RIOT_API_URL;
 const apiKey = process.env.NEXT_PUBLIC_RIOT_API_KEY;
 
@@ -165,7 +166,7 @@ if (!apiKey) {
 문제: 챔피언 로테이션 데이터를 Riot API에서 가져올 때, 잘못된 API 키나 누락된 환경 변수로 인해 403 Forbidden 에러가 발생했습니다.
 해결: 환경 변수를 올바르게 설정하고 접근 가능한 상태로 변경했습니다.
 
-```
+```bash
 const fetchChampionRotation = async () => {
   try {
     const response = await fetch(`${apiUrl}/lol/platform/v3/champion-rotations?api_key=${apiKey}`);
@@ -186,7 +187,7 @@ const fetchChampionRotation = async () => {
 문제: Riot API 데이터를 /api/rotation에서 가져올 때, no-store fetch 설정으로 인해 Dynamic server usage 오류와 캐싱 문제가 발생했습니다.
 해결: revalidate: 86400 옵션을 추가하여 하루마다 데이터를 갱신하도록 설정했습니다.
 
-```
+```bash
 import { NextResponse } from 'next/server';
 import { Rotation } from '@/lib/types/Rotation';
 import { rotateApiUrl } from '@/lib/constants/constants';
@@ -227,7 +228,7 @@ export async function GET() {
 문제: Riot API의 no-store fetch 요청으로 인해 Dynamic server usage와 관련된 오류가 발생했습니다.
 해결: 데이터 캐싱 설정을 통해 데이터를 매번 갱신하지 않도록 하고, 유효성 갱신을 통해 해결 방안을 모색했습니다.
 
-```
+```bash
 // Riot API 호출 시 캐싱 설정
 const res = await fetch(rotateApiUrl, {
   method: 'GET',
@@ -245,7 +246,7 @@ const res = await fetch(rotateApiUrl, {
 문제: 초기 CSR 방식으로 데이터를 불러올 때 로딩 상태가 계속 유지되거나 API 호출 실패 시 에러 처리가 제대로 되지 않았습니다.
 해결: TanStack Query를 사용하여 로딩 및 에러 상태 관리를 간소화하고, 초기 데이터를 안정적으로 가져올 수 있도록 개선했습니다.
 
-```
+```bash
 import { useQuery } from '@tanstack/react-query';
 import { getChampionRotation } from '@/lib/utils/rotateApi';
 
@@ -271,7 +272,7 @@ if (error) {
 문제: 서버와 클라이언트 양쪽 모두에서 에러 처리가 제대로 이루어지지 않아 사용자 경험이 좋지 않았습니다.
 해결: 에러를 명확히 처리하고, 사용자에게 적절한 안내 메시지를 제공하도록 수정했습니다.
 
-```
+```bash
 try {
   const res = await fetch(rotateApiUrl, {
     method: 'GET',
