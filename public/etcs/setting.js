@@ -22,3 +22,5 @@
 // https://www.chartjs.org/docs/latest/
 // yarn add chart.js react-chartjs-2
 // yarn add -D @types/chart.js
+
+// yarn add sharp
