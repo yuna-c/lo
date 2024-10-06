@@ -1,5 +1,6 @@
 'use server'
 import { Item } from '@/lib/types/Item'
+import { Rotation } from '../types/Rotation'
 import { apiUrl, dataUrl } from '@/lib/constants/constants'
 import { Champion, ChampionDetail, ChampionDetailResponse } from '@/lib/types/Champion'
 
@@ -45,7 +46,10 @@ export async function fetchChampionDetail(id: string): Promise<ChampionDetail> {
   }
 
   const data: ChampionDetailResponse = await res.json()
-  return data.data[id]
+  const detail = data.data[id]
+  // console.log(detail)
+  return detail
+  // return data.data[id]
 }
 
 //SECTION - 아이템 목록
@@ -61,3 +65,4 @@ export async function fetchItems(): Promise<Item[]> {
   const items: Item[] = Object.values(data.data)
   return items
 }
+

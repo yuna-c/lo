@@ -1,10 +1,11 @@
 'use client'
 import Head from 'next/head'
+import Loading from '@/app/loading'
 import { useEffect } from 'react'
 import { Champion } from '@/lib/types/Champion'
 import { CardItems } from '@/components/champions/CardItems'
-import { useStateStore } from '@/lib/store/zustand'
-import Loading from '@/app/loading'
+import { useStateStore } from '@/lib/stores/zustand'
+import { getChampionRotation } from '@/lib/utils/rotateApi'
 
 export default function RotationPage() {
   const { loading, setLoading, allChampions, setAllChampions, newChampions, setNewChampions } = useStateStore()
@@ -13,15 +14,11 @@ export default function RotationPage() {
     const fetchRotationData = async () => {
       try {
         setLoading(true)
-        const res = await fetch('/api/rotation')
-        if (!res.ok) {
-          throw new Error('챔피언 로테이션 데이터를 가져오는 데 실패했어요!')
-        }
-        const { allPlayers, newPlayers } = await res.json()
+        const { allPlayers, newPlayers } = await getChampionRotation()
         setAllChampions(allPlayers)
         setNewChampions(newPlayers)
-      } catch (err) {
-        console.error('챔피언 로테이션을 불러오는 데 실패했어요!')
+      } catch (error) {
+        console.error('챔피언 로테이션을 불러오는 데 실패했어요!', error)
       } finally {
         setLoading(false)
       }
