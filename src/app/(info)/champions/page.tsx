@@ -17,17 +17,19 @@ export default async function ChampionsPage() {
   const championList: Champion[] = await fetchChampionsList()
 
   return (
-    <article className="flex flex-col gap-10 p-4">
-      <div className="txt">
-        <h2 className="font-bold">챔피언 목록 보기</h2>
-        <p>Riot Games API를 활용하여 챔피언 정보를 제공합니다.</p>
-      </div>
+    <>
+      <article className="flex flex-col gap-10 p-4">
+        <div className="txt">
+          <h2 className="font-bold">챔피언 목록 보기</h2>
+          <p>Riot Games API를 활용하여 챔피언 정보를 제공합니다.</p>
+        </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {championList.map((champion: Champion) => (
-          <CardItems key={champion.id} champion={champion} />
-        ))}
-      </div>
-    </article>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {championList.map((champion: Champion) => (
+            <CardItems key={champion.id} champion={champion} />
+          ))}
+        </div>
+      </article>
+    </>
   )
 }

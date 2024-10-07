@@ -1,5 +1,7 @@
-export const apiUrl = 'https://ddragon.leagueoflegends.com'
-export const rotateApiUrl = 'https://kr.api.riotgames.com/lol/platform/v3/champion-rotations'
+export const revalidateNum = 86400
+
+export const apiUrl = process.env.NEXT_PUBLIC_RIOT_API_URL || 'https://ddragon.leagueoflegends.com'
+export const rotateApiUrl = process.env.NEXT_PUBLIC_RIOT_ROTATE_API_URL || 'https://kr.api.riotgames.com/lol/platform/v3/champion-rotations'
 export const splashImgUrl = `${apiUrl}/cdn/img/champion/splash`
 export const LoadingImgUrl = `${apiUrl}/cdn/img/champion/loading`
 

@@ -1,6 +1,4 @@
 import { Metadata } from 'next'
-import { Suspense } from 'react'
-import Loading from '@/app/loading'
 import { ChampionDetail } from '@/lib/types/Champion'
 import { fetchChampionDetail, fetchVersion } from '@/lib/utils/serverApi'
 import Detail from './Detail'
@@ -28,9 +26,5 @@ export default async function DetailPage({ params }: Props) {
   const version: string = await fetchVersion()
   const champion: ChampionDetail = await fetchChampionDetail(params.id)
 
-  return (
-    <Suspense fallback={<Loading />}>
-      <Detail champion={champion} version={version} />
-    </Suspense>
-  )
+  return <Detail champion={champion} version={version} />
 }

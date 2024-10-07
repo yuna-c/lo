@@ -11,12 +11,12 @@ type CardItemsProps = {
 }
 
 export function CardItems({ champion, item, version, className = '' }: CardItemsProps) {
-  if (!champion && !item) return null
-
   const isChampion = !!champion
   const data = champion || item
 
   const imageUrl = isChampion ? `${LoadingImgUrl}/${champion?.id}_0.jpg` : item && version ? (item.image?.full ? itemImgUrl(version, item.image.full) : '/images/lol1.jpg') : ''
+
+  if (!champion && !item && !imageUrl) return null
 
   return (
     <ReusableCard
