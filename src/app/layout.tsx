@@ -1,12 +1,10 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
 import localFont from 'next/font/local'
 import Providers from '@/lib/providers/RQProvider'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import Loading from './loading'
-import '@/styles/globals.css'
 import ScrollTop from '@/components/layout/ScrollTop'
+import '@/styles/globals.css'
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -32,9 +30,7 @@ export default function RootLayout({
         <body className={`${pretendard.variable} antialiased bg-background text-foreground`}>
           <div className="wrap">
             <Header />
-            <Suspense fallback={<Loading />}>
-              <main>{children}</main>
-            </Suspense>
+            <main>{children}</main>
             <Footer />
           </div>
           <ScrollTop />
